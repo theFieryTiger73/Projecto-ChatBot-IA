@@ -1,0 +1,21 @@
+{% extends 'base-auth.html' %}
+{% block title %} {{ super() }} - Cadastrar {% endblock %}
+{% block content %}
+    <h2>Cadastro</h2>
+    <form action="" method="post">
+        {{ form.csrf_token }}
+        <label for="">Name</label>
+            {{ form.name(class="form-control", placeholder="Digite seu nome completo") }}
+        <label for="">Código de estudante</label>
+            {{ form.code_id(class="form-control", placeholder="Digite seu código de estudante") }}
+        <label for="">Email</label>
+            {{ form.email(class="form-control", placeholder="Digite seu email") }}
+        <label for="">Telefone</label>
+            {{ form.tel(class="form-control", placeholder="Digite seu Telefone") }}
+        <label for="">Password</label>
+            {{ form.password(class="form-control") }}
+        <label for=""> Confirme a Password</label>
+            {{ form.confirm_password(class="form-control") }}
+        <button type="submit">Cadastrar</button>
+    </form>
+{% endblock %}

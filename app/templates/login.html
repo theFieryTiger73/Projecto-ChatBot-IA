@@ -1,0 +1,16 @@
+{% extends 'base-auth.html' %}
+{% block title %} {{ super() }} - Login {% endblock %}
+{% block content %}
+    <form action="" method="post">
+        {{ form.csrf_token }}
+        <label for="">Código de estudante</label>
+            {{ form.code_id(class="form-control", placeholder="Digite seu código de estudante") }}
+        <label for="">Password</label>
+            {{ form.password(class="form-control") }}
+        <label for="">
+            {{ form.remember_me }} Lembre-me
+        </label>
+        <button type="submit">Entrar</button>
+    </form>
+    <p>Não tem uma conta? <a href="{{ url_for('signup') }}">Cadastre-se aqui</a>.</p>
+{% endblock %}

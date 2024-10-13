@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block title %} {{ super() }} - Index {% endblock %}
+{% block content %}
+    <h2>Bem-vindo ao Sistema de Gestão de filas.</h2>
+    <p>Pode explorar o nosso chatbot para responder as suas questões.</p>
+    <p>Caso tenha uma conta, clique em login <a href="{{ url_for('login') }}">Login</a></p>
+    <p>Caso contrário pode se cadastrar <a href="{{ url_for('signup') }}">cadastrar</a></p>
+{% endblock %}

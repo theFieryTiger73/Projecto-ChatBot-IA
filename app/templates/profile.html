@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block title %} {{ super() }} - Profile {% endblock %}
+{% block content %}
+    <h1>Bem vindo ao seu perfil! {{ user.name }}</h1>
+
+    <p>Explore todo seu progresso, questões frequentes no melhor lugar!</p>
+       
+    <a href="{{ url_for('index') }}">Voltar</a>
+{% endblock %}

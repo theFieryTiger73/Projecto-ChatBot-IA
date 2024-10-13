@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %} {{ super() }} - chatbot {% endblock %}
+
+{% block content %}
+
+<div class="chatbot-container">
+    <h2>Chatbot de FAQs</h2>
+    <div id="chatbox" class="chatbox">
+        <div id="messages" class="messages">
+            <div class="bot-message">
+                <strong>Bot:</strong> Olá! Como posso ajudá-lo hoje?
+            </div>
+        </div>
+    </div>
+    <form id="chat-form" class="chat-form">
+        <input type="text" id="message" name="message" placeholder="Digite sua mensagem..." required>
+        <button type="submit">Enviar</button>
+    </form>
+</div>
+
+<script src="{{ url_for('static', filename='js/chatbot.js') }}"></script>
+
+{% endblock %}

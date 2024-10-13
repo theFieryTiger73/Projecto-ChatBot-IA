@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} Gestão de filas {% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <div id="menu">
+            <p>
+                <nav>
+                    <a href="{{ url_for('index') }}">Home</a>
+                    {% if current_user.is_authenticated %}
+                    <a href="{{ url_for('profile') }}">Profile</a>
+                    {% endif %}
+                    {% if not current_user.is_authenticated %}
+                    <a href="{{ url_for('login') }}">Login</a>
+                    <a href="{{ url_for('signup') }}">Sign UP</a>
+                    {% endif %}
+                    {% if current_user.is_authenticated %}
+                    <a href="{{ url_for('logout') }}">Logout</a>
+                    {% endif %}
+                </nav>
+            </p>
+        </div>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <p>
+                {{ messages[0] }}
+            </p>
+        {% endif %}
+        {% endwith %}
+    </header>
+    <section>
+        {% block content %}
+        {% endblock %}
+    </section>
+    <footer>&copy;2024 Company, Inc.</footer>
+</body>
+</html>
