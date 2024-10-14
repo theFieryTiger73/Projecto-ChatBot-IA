@@ -27,7 +27,7 @@
  ### Iniciando o virtualenv
 
  ```
-    $ virtualenv venv **ou** $ virtualenv -p python3 venv
+    $ virtualenv venv ou $ virtualenv -p python3 venv
  ```
 
  ### Activação do ambiente virtual venv
@@ -71,7 +71,7 @@
 
  ## Criação de um arquivo .env
  A criação de um __.env__ irá permitir que configure todas as informações sensiveis nas variáveis de ambiente.
- Então, deixei a disposição um exemplo de como está estruturado no projecto real as variáveis de ambiente, __.env.example__ .
+ Então, deixei a disposição um exemplo de como está estruturado no projecto real as variáveis de ambiente no arquivo, __.env.example__ .
  Apenas será necessário copiar as informações de __.env.example__ para __.env__ .
 
  ### Exemplo:

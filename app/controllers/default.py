@@ -2,10 +2,9 @@ from flask import render_template, redirect, url_for, flash, request, jsonify
 from flask_login import login_user, logout_user, login_required, current_user
 from app import app, db, login_manager
 from werkzeug.security import generate_password_hash, check_password_hash
-
-# verificar essa importação
 from flask_wtf.csrf import CSRFProtect
 
+from app.services.chatbot_genai import model
 from app.models.tables import User, Question
 from app.models.forms import LoginForm, Cadastro, UpdateProfileForm
 
@@ -128,7 +127,7 @@ def chatbot():
         else:
             # Se não encontrar, utiliza a API da AI para gerar uma resposta
             try:
-                response = "AI response"
+                response = model.generate_content(similar_questions)
                 answer = response.choices[0].text.strip()
             except Exception as e:
                 answer = "Desculpe, ocorreu um erro ao processar sua solicitação."
