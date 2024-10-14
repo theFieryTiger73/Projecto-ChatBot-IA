@@ -139,7 +139,6 @@ def chatbot():
     return render_template("chatbot.html")
 
 
-# Opcional: Rota para adicionar perguntas (apenas para administradores)
 @app.route("/add_question", methods=['GET', 'POST'])
 @login_required
 def add_question():
