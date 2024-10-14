@@ -2,7 +2,6 @@ from flask import render_template, redirect, url_for, flash, request, jsonify
 from flask_login import login_user, logout_user, login_required, current_user
 from app import app, db, login_manager
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask_wtf.csrf import CSRFProtect
 
 from app.services.chatbot_genai import model
 from app.models.tables import User, Question
@@ -108,9 +107,6 @@ def delete_user(id):
     return redirect(url_for('index'))
 
 
-# Essa rota deve ser implementada usando técnicas de rendirização no frontend, bugs ainda a corrigir
-srf = CSRFProtect(app)
-
 @app.route("/chatbot", methods=["GET", "POST"])
 @login_required
 def chatbot():
@@ -156,7 +152,7 @@ def add_question():
 
         db.session.add(new_question)
         db.session.commit()
-        flash("Nova questão adiocionada com sucesso!", "success")
+        flash("Nova questão adicionada com sucesso!", "success")
         return redirect(url_for('chatbot'))
     
     return render_template('add_question.html')
