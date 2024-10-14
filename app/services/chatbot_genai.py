@@ -1,7 +1,14 @@
-import google.generativeai as genai  # pip install -q -U google-generativeai
+import os
 
+import google.generativeai as genai
 
-API_KEY = 'YOUR-API-KEY'
+from dotenv import load_dotenv
+
+load_dotenv()
+
+API_KEY = os.environ.get("API_KEY")
+
+API_KEY = 'API_KEY'
 genai.configure(api_key=API_KEY)
 
 model = genai.GenerativeModel("gemini-1.5-flash")

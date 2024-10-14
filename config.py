@@ -1,12 +1,22 @@
-DEBUG = True
+import os
+
+from dotenv import load_dotenv
+
+load_dotenv()
+
+server = os.environ.get("MSSQL_SERVER")
+database = os.environ.get("MSSQL_DB")
+driver = os.environ.get("MSSQL_DRIVER")
+URI = os.environ.get("DATABASE_URI")
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # configurações de conexão
-server = 'localhost\SQLEXPRESS'
-database = 'chatbot'
-driver = 'ODBC Driver 17 for SQL Server'
+server = server
+database = database
+driver = driver
 
-SQLALCHEMY_DATABASE_URI = f'mssql+pyodbc://{server}/{database}?driver={driver}'
+SQLALCHEMY_DATABASE_URI = URI
 
 SQLALCHEMY_TRACK_MODIFICATION = True
 
-SECRET_KEY = 'um-nome-bem-seguro'
+SECRET_KEY = SECRET_KEY
