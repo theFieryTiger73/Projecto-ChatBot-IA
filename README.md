@@ -75,32 +75,30 @@
  Apenas será necessário copiar as informações de __.env.example__ para __.env__ .
 
  ### Exemplo:
-        **Irei continuar a documentação logo que essa etapa estiver concluída!**
+        Irei continuar a documentação logo que essa etapa estiver concluída!
 
 ## Configuração do Banco de Dados
 O banco de dados usado para o projecto, é o banco de dados MS SQL SERVER da Microsoft e dependendo do banco de dados a configuração será diferente.
 
 ### Exemplo:
-        ```
             server = 'localhost\SQLEXPRESS' -> Nome do servidor adequado ao seu projecto;
             database = 'chatbot' -> Nome da base de dados;
             driver = 'ODBC Driver 17 for SQL Server' -> Driver para conexão efetiva com o banco de dados.
 
             SQLALCHEMY_DATABASE_URI = f'mssql+pyodbc://{server}/{database}?driver={driver}' -> Temos a URI de conexão.
 
-        ```
 ### **NB:** O presente exemplo será modificado brevimente!
 
 
-# Migrações das tabelas ORM do proojecto para o Banco de Dados
+# Migrações das tabelas ORM do projecto para o Banco de Dados
 
 Tendo já feito toda configuração e terminado, vamos agora fazer as migrações para o banco de dados:
 
 ### Shell
 ```
-    **flask db init**
-    **flask db migrate -m "initial migration."** -> apenas a primeira vez, as proximas serão **flask db migrate**
-    **flask db upgrade**
+    flask db init
+    flask db migrate -m "initial migration."-> apenas a primeira vez, as proximas serão $ flask db migrate
+    flask db upgrade
 ```
 
 
