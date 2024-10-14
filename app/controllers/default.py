@@ -5,7 +5,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 from app.services.chatbot_genai import model
 from app.models.tables import User, Question
-from app.models.forms import LoginForm, Cadastro, UpdateProfileForm
+from app.models.forms import LoginForm, Cadastro, UpdateProfileForm, QuestionForm
 
 
 @login_manager.user_loader
@@ -138,9 +138,10 @@ def chatbot():
 @app.route("/add_question", methods=['GET', 'POST'])
 @login_required
 def add_question():
+    form = QuestionForm()
     if request.method == 'POST':
-        question_text = request.form.get('question')
-        answer = request.form.get('answer')
+        question_text = form.question_text.data
+        answer = form.answer.data
         if not question_text or not answer:
             flash("Ambos campos de questão e resposta são obrigatórios!", "warning")
             return redirect(url_for('add_question'))
@@ -155,4 +156,4 @@ def add_question():
         flash("Nova questão adicionada com sucesso!", "success")
         return redirect(url_for('chatbot'))
     
-    return render_template('add_question.html')
+    return render_template('add_question.html', form=form)

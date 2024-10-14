@@ -10,4 +10,4 @@ port = os.environ.get("FLASK_DEVELOPMENT_PORT", 5000)
 debug = os.environ.get("FLASK_DEBUG", False)
 
 if __name__ == "__main__":
-    app.run(host=host, debug=debug)
+    app.run(host=host, debug=debug, port=port)
