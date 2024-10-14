@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %} {{ super() }} - Adicionar Pergunta {% endblock %}
+{% block content %}
+    <h2>Adicionar Nova Pergunta</h2>
+    <form method="POST" action="{{ url_for('add_question') }}">
+        <div>
+            <label for="question">Pergunta:</label><br>
+            <textarea name="question" id="question" rows="4" cols="50" required></textarea>
+        </div>
+        <div>
+            <label for="answer">Resposta:</label><br>
+            <input type="text" name="answer" id="answer" required>
+        </div>
+        <div>
+            <button type="submit">Adicionar</button>
+        </div>
+    </form>
+{% endblock %}

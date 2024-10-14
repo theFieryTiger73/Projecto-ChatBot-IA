@@ -90,6 +90,7 @@ def update_profile():
         form.tel.data = current_user.tel
     return render_template('edit.html', form=form)
 
+
 # Contém bugs que precisam de resolução.
 @app.route("/delete_user/int:<id>", methods=["GET", "POST"])
 @app.route("/delete_user", defaults = {"id":None})
@@ -105,6 +106,7 @@ def delete_user(id):
     db.session.commit()
     flash("Sua conta foi excluída com sucesso!", "info")
     return redirect(url_for('index'))
+
 
 # Essa rota deve ser implementada usando técnicas de rendirização no frontend, bugs ainda a corrigir
 srf = CSRFProtect(app)
@@ -135,3 +137,27 @@ def chatbot():
         return jsonify({"answer": answer})
 
     return render_template("chatbot.html")
+
+
+# Opcional: Rota para adicionar perguntas (apenas para administradores)
+@app.route("/add_question", methods=['GET', 'POST'])
+@login_required
+def add_question():
+    if request.method == 'POST':
+        question_text = request.form.get('question')
+        answer = request.form.get('answer')
+        if not question_text or not answer:
+            flash("Ambos campos de questão e resposta são obrigatórios!", "warning")
+            return redirect(url_for('add_question'))
+        new_question = Question(
+            question_text=question_text,
+            answer=answer,
+            user_id=current_user.id
+        )
+
+        db.session.add(new_question)
+        db.session.commit()
+        flash("Nova questão adiocionada com sucesso!", "success")
+        return redirect(url_for('chatbot'))
+    
+    return render_template('add_question.html')
