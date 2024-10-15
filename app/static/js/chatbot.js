@@ -17,15 +17,20 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('message').value = '';
 
         // Enviar a mensagem para o servidor via AJAX
-        fetch("{{ url_for('chatbot') }}", {
+        fetch(CHATBOT_URL, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'X-CSRFToken': '{{ csrf_token() }}'
+                'X-CSRFToken': CSRF_TOKEN
             },
             body: JSON.stringify({ message: userMessage })
         })
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Erro na resposta do servidor');
+            }
+            return response.json();
+        })
         .then(data => {
             if (data.answer) {
                 const botDiv = document.createElement('div');

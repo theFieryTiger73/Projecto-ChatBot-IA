@@ -2,6 +2,7 @@ from flask import render_template, redirect, url_for, flash, request, jsonify
 from flask_login import login_user, logout_user, login_required, current_user
 from app import app, db, login_manager
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask_cors import cross_origin
 
 from app.services.chatbot_genai import model
 from app.models.tables import User, Question
@@ -125,9 +126,10 @@ def chatbot():
         else:
             # Se não encontrar, utiliza a API da AI para gerar uma resposta
             try:
-                response = model.generate_content(similar_questions)
+                response = model.generate_content(user_message)
                 answer = response.choices[0].text.strip()
             except Exception as e:
+                print(f"Erro ao processar a resposta: {str(e)}")
                 answer = "Desculpe, ocorreu um erro ao processar sua solicitação."
 
         return jsonify({"answer": answer})
@@ -136,6 +138,7 @@ def chatbot():
 
 
 @app.route("/add_question", methods=['GET', 'POST'])
+@cross_origin()
 @login_required
 def add_question():
     form = QuestionForm()

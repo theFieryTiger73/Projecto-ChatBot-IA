@@ -19,6 +19,14 @@
     </form>
 </div>
 
+
+<!-- Definir as variáveis necessárias para o JavaScript externo -->
+<script>
+    const CHATBOT_URL = "{{ url_for('chatbot') }}";
+    const CSRF_TOKEN = "{{ csrf_token() }}";
+</script>
+
+
 <script src="{{ url_for('static', filename='js/chatbot.js') }}"></script>
 
 {% endblock %}
